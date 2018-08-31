@@ -1,0 +1,57 @@
+pro read_mls_theta_data_one_day,tmls,xmls,ymls,xsatmls,ysatmls,$
+    pmls,zmls,ptrmls,ztrmls,thtrmls,clmls,mmls,ch3cnmls,clomls,hno3mls,o3mls,$
+    h2omls,ech3cnmls,eclomls,ehno3mls,eo3mls,eh2omls
+t=0.
+x=0.
+y=0.
+xs=0.
+ys=0.
+pth=0.
+zth=0.
+ptr=0.
+ztr=0.
+thtr=0.
+cl=0.
+m=0
+ch3cndat=0.
+hno3dat=0.
+clodat=0.
+o3dat=0.
+h2odat=0.
+ch3cnerrdat=0.
+cloerrdat=0.
+hno3errdat=0.
+o3errdat=0.
+h2oerrdat=0.
+norbit=0L
+readf,4,norbit
+if norbit eq 0L then return
+for i=0,norbit-1 do begin
+    readf,4,t,y,x,xs,ys,pth,zth,ptr,ztr,thtr,cl,m
+    tmls(i)=t
+    xmls(i)=x
+    ymls(i)=y
+    xsatmls(i)=xs
+    ysatmls(i)=ys
+    pmls(i)=pth
+    zmls(i)=zth
+    ptrmls(i)=ptr
+    ztrmls(i)=ztr
+    thtrmls(i)=thtr
+    clmls(i)=cl
+    mmls(i)=m
+    readf,4,o3dat,hno3dat,h2odat,clodat,ch3cndat
+    readf,4,o3errdat,hno3errdat,h2oerrdat,cloerrdat,ch3cnerrdat
+    ch3cnmls(i)=ch3cndat
+    clomls(i)=clodat
+    hno3mls(i)=hno3dat
+    o3mls(i)=o3dat
+    h2omls(i)=h2odat
+    ech3cnmls(i)=ch3cnerrdat
+    eclomls(i)=cloerrdat
+    ehno3mls(i)=hno3errdat
+    eo3mls(i)=o3errdat
+    eh2omls(i)=h2oerrdat
+endfor
+return
+end
