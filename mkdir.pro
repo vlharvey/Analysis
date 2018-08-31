@@ -1,0 +1,1 @@
+for i=1, 366 do begin    idir=string(format='(i3.3)',i)    spawn,'mkdir '+'SABER_data/Datfiles/2007/' + idirendforend
