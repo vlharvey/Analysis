@@ -1,0 +1,144 @@
+;
+; Read HALOE merged theta data.
+;
+pro rd_haloe_merged_data,yymmdd,icount,thal,xhal,yhal,thhal,$
+    xsat,ysat,phal,zhal,ptrhal,ztrhal,thtrhal,clhal,mhal,$
+    ch4hal,hfhal,h2ohal,o3hal,hclhal,no2hal,nohal,aerhal,$
+    ech4hal,ehfhal,eh2ohal,eo3hal,ehclhal,eno2hal,enohal,$
+    eaerhal,here1,here2,here3,here4,halcomp,haldens,halmedr,$
+    haldisw,halconc,halsurf,halvolu,haleffr
+t=0.
+x=0.
+y=0.
+th=0.
+xs=0.
+ys=0.
+pth=0.
+zth=0.
+ptr=0.
+ztr=0.
+thtr=0.
+cl=0.
+m=0L
+ch4=0.
+hf=0.
+h2o=0.
+o3=0.
+hcl=0.
+no2=0.
+no=0.
+aer=0.
+e1=0.
+e2=0.
+e3=0.
+e4=0.
+comp1=0.
+dens1=0.
+medr1=0.
+disw1=0.
+conc1=0.
+surf1=0.
+volu1=0.
+effr1=0.
+ech4=0.
+ehf=0.
+eh2o=0.
+eo3=0.
+ehcl=0.
+eno2=0.
+eno=0.
+eaer=0.
+yymmdd=0L
+readf,4,yymmdd
+readf,4,icount
+if icount eq 0L then return
+thal=fltarr(icount)
+xhal=fltarr(icount)
+yhal=fltarr(icount)
+thhal=fltarr(icount)
+xsat=fltarr(icount)
+ysat=fltarr(icount)
+phal=fltarr(icount)
+zhal=fltarr(icount)
+ptrhal=fltarr(icount)
+ztrhal=fltarr(icount)
+thtrhal=fltarr(icount)
+clhal=fltarr(icount)
+mhal=lonarr(icount)
+ch4hal=fltarr(icount)
+hfhal=fltarr(icount)
+h2ohal=fltarr(icount)
+o3hal=fltarr(icount)
+hclhal=fltarr(icount)
+no2hal=fltarr(icount)
+nohal=fltarr(icount)
+aerhal=fltarr(icount)
+here1=fltarr(icount)
+here2=fltarr(icount)
+here3=fltarr(icount)
+here4=fltarr(icount)
+halcomp=fltarr(icount)
+haldens=fltarr(icount)
+halmedr=fltarr(icount)
+haldisw=fltarr(icount)
+halconc=fltarr(icount)
+halsurf=fltarr(icount)
+halvolu=fltarr(icount)
+haleffr=fltarr(icount)
+ech4hal=fltarr(icount)
+ehfhal=fltarr(icount)
+eh2ohal=fltarr(icount)
+eo3hal=fltarr(icount)
+ehclhal=fltarr(icount)
+eno2hal=fltarr(icount)
+enohal=fltarr(icount)
+eaerhal=fltarr(icount)
+for i=0L,icount-1L do begin
+    readf,4,t,y,x,th,xs,ys,pth,zth,ptr,ztr,thtr,cl,m
+    readf,4,ch4,hf,h2o,o3,hcl,no2,no,aer,e1,e2,e3,e4,$
+            comp1,dens1,medr1,disw1,conc1,surf1,volu1,effr1
+    readf,4,ech4,ehf,eh2o,eo3,ehcl,eno2,eno,eaer
+    thal(i)=t
+    xhal(i)=x
+    yhal(i)=y
+    thhal(i)=th
+    xsat(i)=xs
+    ysat(i)=ys
+    phal(i)=pth
+    zhal(i)=zth
+    ptrhal(i)=ptr
+    ztrhal(i)=ztr
+    thtrhal(i)=thtr
+    clhal(i)=cl
+    mhal(i)=m
+    ch4hal(i)=ch4
+    hfhal(i)=hf
+    h2ohal(i)=h2o
+    o3hal(i)=o3
+    hclhal(i)=hcl
+    no2hal(i)=no2
+    nohal(i)=no
+    aerhal(i)=aer
+    here1(i)=e1
+    here2(i)=e2
+    here3(i)=e3
+    here4(i)=e4
+    halcomp(i)=comp1
+    haldens(i)=dens1
+    halmedr(i)=medr1
+    haldisw(i)=disw1
+    halconc(i)=conc1
+    halsurf(i)=surf1
+    halvolu(i)=volu1
+    haleffr(i)=effr1
+    ech4hal(i)=ech4
+    ehfhal(i)=ehf
+    eh2ohal(i)=eh2o
+    eo3hal(i)=eo3
+    ehclhal(i)=ehcl
+    eno2hal(i)=eno2
+    enohal(i)=eno
+    eaerhal(i)=eaer
+endfor
+return
+end

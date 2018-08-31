@@ -1,0 +1,90 @@
+pro rd_lims_merged_data,yymmdd,norbit,t_lims,$
+    x_lims,y_lims,th_lims,xs_lims,ys_lims,p_lims,z_lims,$
+    ptr_lims,ztr_lims,thtr_lims,cl_lims,m_lims,hno3_lims,$
+    no2_lims,o3_lims,h2o_lims
+yyyymmdd=0L
+norbit=150000L
+t=0.
+y=0.
+x=0.
+ys=0.
+xs=0.
+p=0.
+z=0.
+p_trop=0.
+z_trop=0.
+th_trop=0.
+cl=0.
+m=0L
+hno3dat=0.
+no2dat=0.
+o3dat=0.
+h2odat=0.
+t_lims=9999+fltarr(norbit)
+x_lims=9999+fltarr(norbit)
+y_lims=9999+fltarr(norbit)
+th_lims=9999+fltarr(norbit)
+xs_lims=9999+fltarr(norbit)
+ys_lims=9999+fltarr(norbit)
+p_lims=9999+fltarr(norbit)
+z_lims=9999+fltarr(norbit)
+ptr_lims=9999+fltarr(norbit)
+ztr_lims=9999+fltarr(norbit)
+thtr_lims=9999+fltarr(norbit)
+cl_lims=9999+fltarr(norbit)
+m_lims=9999+intarr(norbit)
+hno3_lims=9999.+fltarr(norbit)
+no2_lims=9999.+fltarr(norbit)
+o3_lims=9999.+fltarr(norbit)
+h2o_lims=9999.+fltarr(norbit)
+;
+; loop over theta levels
+;
+readf,4,yymmdd
+readf,4,norbit
+if norbit gt 0L then begin
+   for i=0L,norbit-1L do begin
+       readf,4,t,y,x,th,xs,ys,p,z,p_trop,z_trop,th_trop,cl,m
+       t_lims(i)=t
+       x_lims(i)=x
+       y_lims(i)=y
+       th_lims(i)=th
+       xs_lims(i)=xs
+       ys_lims(i)=ys
+       p_lims(i)=p
+       z_lims(i)=z
+       ptr_lims(i)=p_trop
+       ztr_lims(i)=z_trop
+       thtr_lims(i)=th_trop
+       cl_lims(i)=cl
+       m_lims(i)=m
+       readf,4,no2dat,o3dat,h2odat,hno3dat
+       hno3_lims(i)=hno3dat
+       no2_lims(i)=no2dat
+       o3_lims(i)=o3dat
+       h2o_lims(i)=h2odat
+   endfor
+   index=where(t_lims ne 9999.,norbit)
+   if index(0) ne -1 then begin
+      t_lims=t_lims(index)
+      x_lims=x_lims(index)
+      y_lims=y_lims(index)
+      th_lims=th_lims(index)
+      xs_lims=xs_lims(index)
+      ys_lims=ys_lims(index)
+      p_lims=p_lims(index)
+      z_lims=z_lims(index)
+      ptr_lims=ptr_lims(index)
+      ztr_lims=ztr_lims(index)
+      thtr_lims=thtr_lims(index)
+      cl_lims=cl_lims(index)
+      m_lims=m_lims(index)
+      hno3_lims=hno3_lims(index)
+      no2_lims=no2_lims(index)
+      o3_lims=o3_lims(index)
+      h2o_lims=h2o_lims(index)
+   endif
+close,4
+endif
+return
+end
